@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container" style="max-width: 1000px;">
+    <h2>Students Directory</h2>
+
+    <!-- Search Box -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <input type="text" id="searchInput" placeholder="Search by student name..." style="max-width: 300px;">
+        <a href="/add_student" class="btn btn-primary">+ Add New Student</a>
+    </div>
+
+    <div class="table-container" style="margin-top: 0;">
+        <table id="studentsTable">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll</th>
+                <th style="width: 150px; text-align: center;">Actions</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                <td><strong>#{{ s.id }}</strong></td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.roll }}</td>
+                <td style="text-align: center; white-space: nowrap;">
+                    <a href="/edit_student/{{ s.id }}" class="btn btn-edit">Edit</a>
+                    <a href="/delete_student/{{ s.id }}" 
+                       class="btn btn-delete"
+                       onclick="return confirm('Are you sure you want to completely delete this student record?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            {% if not students %}
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 30px; color: #6b7280;">No students recorded yet.</td>
+            </tr>
+            {% endif %}
+
+        </table>
+    </div>
+</div>
+
+<!-- SEARCH SCRIPT -->
+<script>
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#studentsTable tr:not(:first-child)");
+
+    rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(value) ? "" : "none";
+    });
+});
+</script>
+
+{% endblock %}

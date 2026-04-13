@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Monitoring</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.1">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Student Monitoring System</h1>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/students">Students</a>
+        <a href="/add_student">Add student</a>
+        <a href="/marks">Marks</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/reports">Reports</a>
+        <a href="/participation">Participation</a>
+        <a href="/homework">Homework</a>
+        <a href="/conduct">Conduct</a>
+        <a href="/login">Login</a>
+        <a href="/logout">logout</a>
+        <a href="/charts">Charts</a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div style="margin-bottom: 15px;">
+              {% for category, message in messages %}
+                <div style="padding: 10px; background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; margin-bottom: 5px;">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Content Block -->
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

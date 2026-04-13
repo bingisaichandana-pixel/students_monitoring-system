@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="dashboard-title">Dashboard</h2>
+
+<div class="dashboard-cards">
+    <!-- Total Students Card -->
+    <div class="stat-card blue">
+        <h3>Total Students</h3>
+        <p>{{ total | default('0') }}</p>
+    </div>
+    
+    <!-- Weak Students Card -->
+    <div class="stat-card red">
+        <h3>Weak Students</h3>
+        <p>{{ weak | default('0') }}</p>
+    </div>
+    
+    <!-- Strong Students Card -->
+    <div class="stat-card green">
+        <h3>Strong Students</h3>
+        <p>{{ strong | default('0') }}</p>
+    </div>
+</div>
+
+{% endblock %}

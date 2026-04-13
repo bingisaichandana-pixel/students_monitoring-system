@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Weak Students</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Internal 1</th>
+        <th>Internal 2</th>
+        <th>Assignment</th>
+    </tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.subject }}</td>
+        <td>{{ s.internal1 }}</td>
+        <td>{{ s.internal2 }}</td>
+        <td>{{s.assignment}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Conduct</h2>
+
+<form method="POST">
+    <select name="student_id" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="remarks" placeholder="Remarks" required>
+    <input type="date" name="date" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Conduct Records</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Remarks</th>
+        <th>Date</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.remarks }}</td>
+        <td>{{ row.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

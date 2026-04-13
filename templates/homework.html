@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Homework</h2>
+
+<form method="POST">
+    <select name="student_id" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <select name="status">
+        <option>Completed</option>
+        <option>Not Completed</option>
+    </select>
+    <input type="date" name="date" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Homework Records</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.subject }}</td>
+        <td>{{ row.status }}</td>
+        <td>{{ row.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

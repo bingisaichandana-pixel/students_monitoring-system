@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Participation</h2>
+
+<form method="POST">
+    <select name="student_id" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="status">
+        <option>Active</option>
+        <option>Silent</option>
+    </select>
+    <input type="date" name="date" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Participation Records</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.status }}</td>
+        <td>{{ row.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

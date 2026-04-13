@@ -1,0 +1,46 @@
+
+<h2>Student Profile</h2>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<h3>{{ student.name }}</h3>
+<p>Roll: {{ student.roll }}</p>
+
+<hr>
+
+<h3>Marks</h3>
+<table border="1">
+<tr>
+    <th>Subject</th>
+    <th>Internal 1</th>
+    <th>Internal 2</th>
+    <th>Assignment</th>
+</tr>
+{% for m in marks %}
+<tr>
+    <td>{{ m.subject }}</td>
+    <td>{{ m.internal1 }}</td>
+    <td>{{ m.internal2 }}</td>
+    <td>{{ m.assignment }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<hr>
+
+<h3>Homework</h3>
+{% for h in homework %}
+<p>Score: {{ h.score }}</p>
+{% endfor %}
+
+<hr>
+
+<h3>Participation</h3>
+{% for p in participation %}
+<p>Score: {{ p.score }}</p>
+{% endfor %}
+
+<hr>
+
+<h3>Conduct</h3>
+{% for c in conduct %}
+<p>Rating: {{ c.rating }}</p>
+{% endfor %}

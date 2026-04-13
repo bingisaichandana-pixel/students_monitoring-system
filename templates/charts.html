@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    .chart-box {
+        margin: 30px auto;
+    }
+    #barChart {
+        width: 100% !important;
+        height: 400px !important;
+    }
+    #pieChart {
+        width: 300px !important;
+        height: 300px !important;
+        margin: auto;
+    }
+</style>
+
+<div class="chart-box">
+    <canvas id="barChart"></canvas>
+</div>
+
+<div class="chart-box">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<script>
+    var ctx1 = document.getElementById('barChart').getContext('2d');
+    var barChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: {{ names | tojson }},
+            datasets: [{
+                label: 'Average Marks',
+                data: {{ marks | tojson }},
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'blue',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Student Marks Analysis'
+                }
+            }
+        }
+    });
+
+    var good = 0;
+    var weak = 0;
+    var marksData = {{ marks | tojson }};
+
+    for (var i = 0; i < marksData.length; i++) {
+        if (marksData[i] >= 25) {
+            good++;
+        } else {
+            weak++;
+        }
+    }
+
+    var ctx2 = document.getElementById('pieChart').getContext('2d');
+    var pieChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Good Students', 'Weak Students'],
+            datasets: [{
+                data: [good, weak],
+                backgroundColor: ['#16a34a', '#ef4444']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Student Performance Distribution'
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

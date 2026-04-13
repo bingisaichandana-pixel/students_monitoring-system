@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Top Performers</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Internal 1</th>
+        <th>Internal 2</th>
+        <th>Assignment</th>
+        <th>Total</th>
+    </tr>
+
+    {% for row in data %}
+    <tr>
+        <td>{{ row.name }}</td>
+        <td>{{ row.subject }}</td>
+        <td>{{ row.internal1 }}</td>
+        <td>{{ row.internal2 }}</td>
+        <td>{{ row.assignment }}</td>
+        <td>{{ row.total }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

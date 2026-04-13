@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add Marks</h2>
+<form method="POST">
+    <select name="student_id" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <input type="number" name="internal1" placeholder="Internal 1" required>
+    <input type="number" name="internal2" placeholder="Internal 2" required>
+    <input type="number" name="assignment" placeholder="Assignment" required>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
