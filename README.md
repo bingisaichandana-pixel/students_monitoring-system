@@ -21,4 +21,4 @@ This project is a web-based application to monitor student performance including
 3. Open browser at http://127.0.0.1:5000
 
 ## 👨‍💻 Developed by
-Your Name
+Sai Chandana
